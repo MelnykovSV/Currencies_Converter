@@ -20,7 +20,7 @@ export const App = () => {
       setIsLoading(true);
       try {
         const result = await axiosInstance.get(
-          `?apikey=${API_KEY}&base_currency=${BASE_CURRENCY}&currencies=${CURRENCIES.join(
+          `?apike=${API_KEY}&base_currency=${BASE_CURRENCY}&currencies=${CURRENCIES.join(
             ","
           )}`
         );
@@ -55,7 +55,7 @@ export const App = () => {
           <div className="container">
             {isLoading && <Loader />}
             {currencyRates && !error ? <CurrenciesConverterTab /> : null}
-            {!currencyRates && error ? <ErrorTab /> : null}
+            {!currencyRates && error ? <ErrorTab error={error} /> : null}
           </div>
         </main>
       </CurrenciesRatesContext.Provider>
