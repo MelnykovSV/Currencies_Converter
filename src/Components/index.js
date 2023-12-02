@@ -1,6 +1,6 @@
-import { CurrenciesConvertorTab } from "./CurrenciesConvertorTab/CurrenciesConvertorTab";
+import { CurrenciesConverterTab } from "./CurrenciesConverterTab/CurrenciesConverterTab";
 import { ExchangeRatesTab } from "./ExchangeRatesTab/ExchangeRatesTab";
 import { Header } from "./Header/Header";
 import { ErrorTab } from "./ErrorTab/ErrorTab";
 
-export { CurrenciesConvertorTab, ExchangeRatesTab, Header, ErrorTab };
+export { CurrenciesConverterTab, ExchangeRatesTab, Header, ErrorTab };

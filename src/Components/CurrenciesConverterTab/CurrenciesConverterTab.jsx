@@ -1,10 +1,10 @@
-import * as S from "./CurrenciesConvertorTab.styled";
+import * as S from "./CurrenciesConverterTab.styled";
 import { useContext, useState } from "react";
 import { CurrenciesRatesContext } from "../../App";
 import { CurrencySelect, CurrencyValueInput } from "../../UI";
 import { convertCurrency } from "../../helpers";
 
-export const CurrenciesConvertorTab = () => {
+export const CurrenciesConverterTab = () => {
   const { data } = useContext(CurrenciesRatesContext);
 
   const [currencyToSell, setCurrencyToSell] = useState("UAH");

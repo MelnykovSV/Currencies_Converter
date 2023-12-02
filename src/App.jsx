@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { axiosInstance } from "./api";
 import { API_KEY, BASE_CURRENCY, CURRENCIES } from "./constants";
 import { createContext } from "react";
-import { Header, CurrenciesConvertorTab, ErrorTab } from "./Components";
+import { Header, CurrenciesConverterTab, ErrorTab } from "./Components";
 import { ModernNormalize } from "emotion-modern-normalize";
 import { Loader } from "./UI";
 
@@ -61,7 +61,7 @@ export const App = () => {
           <div className="container">
             {currencyRates.isLoading && <Loader />}
             {currencyRates.data && !currencyRates.error ? (
-              <CurrenciesConvertorTab />
+              <CurrenciesConverterTab />
             ) : null}
             {!currencyRates.data && currencyRates.error ? <ErrorTab /> : null}
           </div>
