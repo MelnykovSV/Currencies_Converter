@@ -2,14 +2,13 @@ import * as S from "./CurrenciesConvertorTab.styled";
 import { useContext } from "react";
 import { CurrenciesRatesContext } from "../../App";
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
 import { CurrencySelect, CurrencyValueInput } from "../../UI";
 import { convertCurrency } from "../../helpers";
 
 console.log(Number("1."));
 
 export const CurrenciesConvertorTab = () => {
-  const { data, isLoading } = useContext(CurrenciesRatesContext);
+  const { data } = useContext(CurrenciesRatesContext);
 
   const [currencyToSell, setCurrencyToSell] = useState("UAH");
   const [currencyToBuy, setCurrencyToBuy] = useState("USD");
@@ -34,7 +33,7 @@ export const CurrenciesConvertorTab = () => {
       currencyToBuy
     );
 
-    setValueToBuy(Number(valueToBuy.toFixed(2)));
+    setValueToBuy(valueToBuy === null ? null : Number(valueToBuy.toFixed(2)));
     setCurrencyToSell(currency.value);
   };
   const currencyToBuySelectHandler = (currency) => {
@@ -45,7 +44,7 @@ export const CurrenciesConvertorTab = () => {
       currency.value
     );
 
-    setValueToBuy(Number(valueToBuy.toFixed(2)));
+    setValueToBuy(valueToBuy === null ? null : Number(valueToBuy.toFixed(2)));
     setCurrencyToBuy(currency.value);
   };
   const valueToSellSelectHandler = (e) => {
@@ -76,23 +75,37 @@ export const CurrenciesConvertorTab = () => {
   };
   return (
     <S.Container>
-      <CurrencyValueInput
-        value={valueToSell}
-        changeHandler={valueToSellSelectHandler}
-      />
-      <CurrencyValueInput
-        value={valueToBuy}
-        changeHandler={valueToBuySelectHandler}
-        readOnly
-      />
-      <CurrencySelect
-        value={currencyToSell}
-        changeHandler={currencyToSellSelectHandler}
-      />
-      <CurrencySelect
-        value={currencyToBuy}
-        changeHandler={currencyToBuySelectHandler}
-      />
+      <h2>Currency converter</h2>
+      <S.FormBody>
+        <S.ConverterBlock>
+          <label>You sell</label>
+
+          <S.InputsBlock>
+            <CurrencyValueInput
+              value={valueToSell}
+              changeHandler={valueToSellSelectHandler}
+            />
+            <CurrencySelect
+              value={currencyToSell}
+              changeHandler={currencyToSellSelectHandler}
+            />
+          </S.InputsBlock>
+        </S.ConverterBlock>
+        <S.ConverterBlock>
+          <label>You buy</label>
+          <S.InputsBlock>
+            <CurrencyValueInput
+              value={valueToBuy}
+              changeHandler={valueToBuySelectHandler}
+              readOnly
+            />
+            <CurrencySelect
+              value={currencyToBuy}
+              changeHandler={currencyToBuySelectHandler}
+            />
+          </S.InputsBlock>
+        </S.ConverterBlock>
+      </S.FormBody>
     </S.Container>
   );
 };

@@ -4,16 +4,14 @@ import { CurrenciesRatesContext } from "../../App";
 import { DASHBOARD_CURRENCIES } from "../../constants";
 
 export const ExchangeRatesTab = () => {
-  const { data, isLoading } = useContext(CurrenciesRatesContext);
+  const { data } = useContext(CurrenciesRatesContext);
   return (
     <S.Container>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : data ? (
+      {data ? (
         <ul>
           {DASHBOARD_CURRENCIES.map((currency) => (
             <li key={currency}>
-              1 {currency} = {(1 / data[currency]).toFixed(4)} UAH
+              1 {currency} = {(1 / data[currency]).toFixed(2)} UAH
             </li>
           ))}
         </ul>

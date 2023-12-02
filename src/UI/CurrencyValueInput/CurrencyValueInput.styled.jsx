@@ -11,4 +11,17 @@ export const Container = styled.input`
   &[type="number"] {
     -moz-appearance: textfield;
   }
+
+  width: 70%;
+  border: 1px solid #cccccc;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
+  &:focus {
+    outline: none;
+    border: 1px solid #2684ff;
+  }
 `;

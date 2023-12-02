@@ -4,7 +4,9 @@ import { ExchangeRatesTab } from "../ExchangeRatesTab/ExchangeRatesTab";
 export const Header = () => {
   return (
     <S.Container>
-      <ExchangeRatesTab />
+      <div className="container">
+        <ExchangeRatesTab />
+      </div>
     </S.Container>
   );
 };

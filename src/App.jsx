@@ -5,6 +5,8 @@ import { axiosInstance } from "./api";
 import { API_KEY, BASE_CURRENCY, CURRENCIES } from "./constants";
 import { createContext } from "react";
 import { Header, CurrenciesConvertorTab, ErrorTab } from "./Components";
+import { ModernNormalize } from "emotion-modern-normalize";
+import { Loader } from "./UI";
 
 export const CurrenciesRatesContext = createContext();
 
@@ -52,19 +54,17 @@ export const App = () => {
 
   return (
     <S.Container>
+      <ModernNormalize />
       <CurrenciesRatesContext.Provider value={currencyRates}>
         <Header />
         <main>
-          {!currencyRates.isLoading &&
-          currencyRates.data &&
-          !currencyRates.error ? (
-            <CurrenciesConvertorTab />
-          ) : null}
-          {!currencyRates.isLoading &&
-          !currencyRates.data &&
-          currencyRates.error ? (
-            <ErrorTab />
-          ) : null}
+          <div className="container">
+            {currencyRates.isLoading && <Loader />}
+            {currencyRates.data && !currencyRates.error ? (
+              <CurrenciesConvertorTab />
+            ) : null}
+            {!currencyRates.data && currencyRates.error ? <ErrorTab /> : null}
+          </div>
         </main>
       </CurrenciesRatesContext.Provider>
     </S.Container>
