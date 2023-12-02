@@ -20,7 +20,7 @@ export const App = () => {
       setIsLoading(true);
       try {
         const result = await axiosInstance.get(
-          `?apike=${API_KEY}&base_currency=${BASE_CURRENCY}&currencies=${CURRENCIES.join(
+          `?apikey=${API_KEY}&base_currency=${BASE_CURRENCY}&currencies=${CURRENCIES.join(
             ","
           )}`
         );

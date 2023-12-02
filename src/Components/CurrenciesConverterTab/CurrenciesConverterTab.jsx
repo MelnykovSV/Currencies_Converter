@@ -17,7 +17,7 @@ export const CurrenciesConverterTab = () => {
         currencyToSell,
         valueToSell,
         currencyToBuy
-      )?.toFixed(2)
+      ).toFixed(2)
     )
   );
 
