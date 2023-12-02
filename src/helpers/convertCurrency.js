@@ -4,10 +4,10 @@ export function convertCurrency(
   knownValue,
   queryCurrency
 ) {
-    if (knownValue===null) {
-        return null
-    }
-    
+  if (knownValue === null) {
+    return null;
+  }
+
   const result =
     (knownValue / currenciesData[knownCurrency]) *
     currenciesData[queryCurrency];

@@ -11,15 +11,13 @@ import { Loader } from "./UI";
 export const CurrenciesRatesContext = createContext();
 
 export const App = () => {
-  const [currencyRates, setCurrenciesRates] = useState({
-    data: null,
-    isLoading: false,
-    error: null,
-  });
+  const [currencyRates, setCurrenciesRates] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     (async () => {
-      setCurrenciesRates({ ...currencyRates, isLoading: true });
+      setIsLoading(true);
       try {
         const result = await axiosInstance.get(
           `?apikey=${API_KEY}&base_currency=${BASE_CURRENCY}&currencies=${CURRENCIES.join(
@@ -33,20 +31,16 @@ export const App = () => {
             item.value,
           ])
         );
-        setCurrenciesRates({
-          ...currencyRates,
-          isLoading: false,
-          data: { [BASE_CURRENCY]: 1, ...extractedCurrenciesData },
-        });
+
+        setCurrenciesRates({ [BASE_CURRENCY]: 1, ...extractedCurrenciesData });
+        setError(null);
+        setIsLoading(false);
       } catch (e) {
-        setCurrenciesRates({
-          ...currencyRates,
-          error: {
-            status: e.response.status,
-            message: e.response.data.message,
-          },
-          isLoading: false,
+        setError({
+          status: e.response.status,
+          message: e.response.data.message,
         });
+        setIsLoading(false);
       }
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,11 +53,9 @@ export const App = () => {
         <Header />
         <main>
           <div className="container">
-            {currencyRates.isLoading && <Loader />}
-            {currencyRates.data && !currencyRates.error ? (
-              <CurrenciesConverterTab />
-            ) : null}
-            {!currencyRates.data && currencyRates.error ? <ErrorTab /> : null}
+            {isLoading && <Loader />}
+            {currencyRates && !error ? <CurrenciesConverterTab /> : null}
+            {!currencyRates && error ? <ErrorTab /> : null}
           </div>
         </main>
       </CurrenciesRatesContext.Provider>

@@ -5,7 +5,7 @@ import { CurrencySelect, CurrencyValueInput } from "../../UI";
 import { convertCurrency } from "../../helpers";
 
 export const CurrenciesConverterTab = () => {
-  const { data } = useContext(CurrenciesRatesContext);
+  const currencyRates = useContext(CurrenciesRatesContext);
 
   const [currencyToSell, setCurrencyToSell] = useState("UAH");
   const [currencyToBuy, setCurrencyToBuy] = useState("USD");
@@ -13,7 +13,7 @@ export const CurrenciesConverterTab = () => {
   const [valueToBuy, setValueToBuy] = useState(
     Number(
       convertCurrency(
-        data,
+        currencyRates,
         currencyToSell,
         valueToSell,
         currencyToBuy
@@ -23,7 +23,7 @@ export const CurrenciesConverterTab = () => {
 
   const currencyToSellSelectHandler = (currency) => {
     const valueToBuy = convertCurrency(
-      data,
+      currencyRates,
       currency.value,
       valueToSell,
       currencyToBuy
@@ -34,7 +34,7 @@ export const CurrenciesConverterTab = () => {
 
   const currencyToBuySelectHandler = (currency) => {
     const valueToBuy = convertCurrency(
-      data,
+      currencyRates,
       currencyToSell,
       valueToSell,
       currency.value
@@ -46,7 +46,7 @@ export const CurrenciesConverterTab = () => {
   const valueToSellSelectHandler = (e) => {
     const valueToSell = e.target.value === "" ? null : Number(e.target.value);
     const valueToBuy = convertCurrency(
-      data,
+      currencyRates,
       currencyToSell,
       valueToSell,
       currencyToBuy
@@ -58,7 +58,7 @@ export const CurrenciesConverterTab = () => {
   const valueToBuySelectHandler = (e) => {
     const valueToBuy = e.target.value === "" ? null : Number(e.target.value);
     const valueToSell = convertCurrency(
-      data,
+      currencyRates,
       currencyToBuy,
       valueToBuy,
       currencyToSell
