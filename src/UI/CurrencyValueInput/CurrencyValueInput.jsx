@@ -8,8 +8,8 @@ export const CurrencyValueInput = ({ value, changeHandler }) => {
       type="number"
       inputmode="numeric"
       min="0"
-      onKeyDown={(evt) =>
-        ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()
+      onKeyDown={(e) =>
+        ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
       }
     />
   );

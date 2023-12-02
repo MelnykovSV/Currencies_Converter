@@ -1,5 +1,4 @@
 import * as S from "./CurrencySelect.styled";
-
 import { CURRENCIES, BASE_CURRENCY } from "../../constants";
 
 const customStyles = {

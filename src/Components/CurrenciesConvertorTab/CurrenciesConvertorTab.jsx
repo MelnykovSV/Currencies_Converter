@@ -1,11 +1,8 @@
 import * as S from "./CurrenciesConvertorTab.styled";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CurrenciesRatesContext } from "../../App";
-import { useState } from "react";
 import { CurrencySelect, CurrencyValueInput } from "../../UI";
 import { convertCurrency } from "../../helpers";
-
-console.log(Number("1."));
 
 export const CurrenciesConvertorTab = () => {
   const { data } = useContext(CurrenciesRatesContext);
@@ -13,7 +10,6 @@ export const CurrenciesConvertorTab = () => {
   const [currencyToSell, setCurrencyToSell] = useState("UAH");
   const [currencyToBuy, setCurrencyToBuy] = useState("USD");
   const [valueToSell, setValueToSell] = useState(1);
-
   const [valueToBuy, setValueToBuy] = useState(
     Number(
       convertCurrency(
@@ -32,10 +28,10 @@ export const CurrenciesConvertorTab = () => {
       valueToSell,
       currencyToBuy
     );
-
     setValueToBuy(valueToBuy === null ? null : Number(valueToBuy.toFixed(2)));
     setCurrencyToSell(currency.value);
   };
+
   const currencyToBuySelectHandler = (currency) => {
     const valueToBuy = convertCurrency(
       data,
@@ -43,14 +39,12 @@ export const CurrenciesConvertorTab = () => {
       valueToSell,
       currency.value
     );
-
     setValueToBuy(valueToBuy === null ? null : Number(valueToBuy.toFixed(2)));
     setCurrencyToBuy(currency.value);
   };
+
   const valueToSellSelectHandler = (e) => {
     const valueToSell = e.target.value === "" ? null : Number(e.target.value);
-    console.log(valueToSell);
-
     const valueToBuy = convertCurrency(
       data,
       currencyToSell,
@@ -60,6 +54,7 @@ export const CurrenciesConvertorTab = () => {
     setValueToSell(valueToSell);
     setValueToBuy(valueToBuy === null ? null : Number(valueToBuy.toFixed(2)));
   };
+
   const valueToBuySelectHandler = (e) => {
     const valueToBuy = e.target.value === "" ? null : Number(e.target.value);
     const valueToSell = convertCurrency(
@@ -73,13 +68,13 @@ export const CurrenciesConvertorTab = () => {
     );
     setValueToBuy(valueToBuy);
   };
+
   return (
     <S.Container>
       <h2>Currency converter</h2>
       <S.FormBody>
         <S.ConverterBlock>
-          <label>You sell</label>
-
+          <p>You sell</p>
           <S.InputsBlock>
             <CurrencyValueInput
               value={valueToSell}
@@ -92,12 +87,11 @@ export const CurrenciesConvertorTab = () => {
           </S.InputsBlock>
         </S.ConverterBlock>
         <S.ConverterBlock>
-          <label>You buy</label>
+          <p>You buy</p>
           <S.InputsBlock>
             <CurrencyValueInput
               value={valueToBuy}
               changeHandler={valueToBuySelectHandler}
-              readOnly
             />
             <CurrencySelect
               value={currencyToBuy}
