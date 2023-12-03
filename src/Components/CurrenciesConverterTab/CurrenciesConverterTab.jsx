@@ -11,14 +11,16 @@ export const CurrenciesConverterTab = () => {
   const [currencyToBuy, setCurrencyToBuy] = useState("USD");
   const [valueToSell, setValueToSell] = useState(1);
   const [valueToBuy, setValueToBuy] = useState(
-    Number(
-      convertCurrency(
-        currencyRates,
-        currencyToSell,
-        valueToSell,
-        currencyToBuy
-      ).toFixed(2)
-    )
+    valueToSell === null
+      ? null
+      : Number(
+          convertCurrency(
+            currencyRates,
+            currencyToSell,
+            valueToSell,
+            currencyToBuy
+          ).toFixed(2)
+        )
   );
 
   const currencyToSellSelectHandler = (currency) => {
