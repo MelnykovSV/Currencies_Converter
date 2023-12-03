@@ -9,7 +9,7 @@ const customStyles = {
   }),
 };
 
-export const CurrencySelect = ({ value, changeHandler }) => {
+export const CurrencySelect = ({ value, changeHandler, ...props }) => {
   const selectOptions = [BASE_CURRENCY, ...CURRENCIES].map((currency) => ({
     value: currency,
     label: currency,
@@ -20,6 +20,7 @@ export const CurrencySelect = ({ value, changeHandler }) => {
       value={selectOptions.find((option) => option.value === value)}
       onChange={changeHandler}
       styles={customStyles}
+      {...props}
     />
   );
 };

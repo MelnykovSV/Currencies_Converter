@@ -81,10 +81,12 @@ export const CurrenciesConverterTab = () => {
             <CurrencyValueInput
               value={valueToSell}
               changeHandler={valueToSellSelectHandler}
+              name="value-to-sell"
             />
             <CurrencySelect
               value={currencyToSell}
               changeHandler={currencyToSellSelectHandler}
+              name="currency-to-sell"
             />
           </S.InputsBlock>
         </S.ConverterBlock>
@@ -94,10 +96,12 @@ export const CurrenciesConverterTab = () => {
             <CurrencyValueInput
               value={valueToBuy}
               changeHandler={valueToBuySelectHandler}
+              name="value-to-buy"
             />
             <CurrencySelect
               value={currencyToBuy}
               changeHandler={currencyToBuySelectHandler}
+              name="currency-to-buy"
             />
           </S.InputsBlock>
         </S.ConverterBlock>
